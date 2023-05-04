@@ -33,8 +33,8 @@ int main(void)
     char* startTime = (char*)malloc(sizeof(char) * 200);
     char* endTime = (char*)malloc(sizeof(char) * 200);
     char** timeRange = getTimeRange(&sqlData);
-    startTime = timeRange[0];
-    endTime = timeRange[1];
+    strcpy(startTime, timeRange[0]);
+    strcpy(endTime, timeRange[1]);
 
     int user_input = 1;
 
@@ -57,15 +57,19 @@ int main(void)
 	    case 1:
 		puts("");
     		printf("Time Range: %s to %s\n", timeRange[0], timeRange[1]);
-		puts("Enter start time (yyyy-mm-dd hh:mm:ss) only year, month, and day required");
+		puts("Enter start time (yyyy-mm-dd-hh:mm:ss) only year, month, and day required");
+		memset(startTime, 0, strlen(startTime));
 		scanf("%s", startTime);
+		startTime[10] = ' ';
 		puts("");
 		break;
 	    case 2:
 		puts("");
     		printf("Time Range: %s to %s\n", timeRange[0], timeRange[1]);
-		puts("Enter end time (yyyy-mm-dd hh:mm:ss) only year, month, and day required");
+		puts("Enter end time (yyyy-mm-dd-hh:mm:ss) only year, month, and day required");
+		memset(endTime, 0, strlen(endTime));
 		scanf("%s", endTime);
+		endTime[10] = ' ';
 		puts("");
 		break;
 	    case 3:
